@@ -36,21 +36,28 @@
 
         </LinearLayout>
 
-
-
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
+            android:id="@+id/fab1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_gravity="end|bottom"
             android:scaleType="fitCenter"
-            android:layout_margin="16dp"
+            android:layout_margin="8dp"
             android:src="@drawable/ic_add_black"
-            app:borderWidth="0dp"
             />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:layout_margin="0dp"
+            android:src="@android:drawable/ic_btn_speak_now"
+            android:layout_alignLeft="@+id/fab1"
+            android:layout_above="@+id/fab1"
+            />
+
     </RelativeLayout>
 
     <!-- The navigation drawer that comes from the left -->

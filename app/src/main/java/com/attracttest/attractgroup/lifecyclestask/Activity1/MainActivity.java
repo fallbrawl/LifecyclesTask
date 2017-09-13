@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -19,12 +18,13 @@ import com.attracttest.attractgroup.lifecyclestask.Activity2.Main2Activity;
 import com.attracttest.attractgroup.lifecyclestask.R;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "stage";
+    private static final String TAG = "stages";
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
-    private ActionBarDrawerToggle drawerToggle;
+
     private NavigationView nvDrawer;
     private FloatingActionButton myFab;
+    private Fragment defaultFragment;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         // Setup drawer view
         setupDrawerContent(nvDrawer);
 
-        myFab = (FloatingActionButton) findViewById(R.id.fab);
+        myFab = (FloatingActionButton) findViewById(R.id.fab1);
         final Intent intent = new Intent(this, Main2Activity.class);
 
         myFab.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +50,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Class fragment1Class = Fragment1.class;
+
+        try {
+            defaultFragment = (Fragment) fragment1Class.newInstance();
+            // Insert the fragment by replacing any existing fragment
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.flContent, defaultFragment).commit();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
@@ -67,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         // Create a new fragment and specify the fragment to show based on nav item clicked
         Fragment fragment = null;
         Class fragmentClass;
+
         switch(menuItem.getItemId()) {
             case R.id.nav_first_fragment:
                 fragmentClass = Fragment1.class;
