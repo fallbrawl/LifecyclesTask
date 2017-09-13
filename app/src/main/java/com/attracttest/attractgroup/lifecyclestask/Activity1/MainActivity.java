@@ -13,8 +13,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.attracttest.attractgroup.lifecyclestask.Activity2.Main2Activity;
+import com.attracttest.attractgroup.lifecyclestask.Activity3.Main3Activity;
 import com.attracttest.attractgroup.lifecyclestask.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,8 +25,13 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
 
     private NavigationView nvDrawer;
-    private FloatingActionButton myFab;
+
+    private FloatingActionButton myFabPager;
+    private FloatingActionButton myFabResult;
+
     private Fragment defaultFragment;
+
+    private TextView result;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,12 +49,21 @@ public class MainActivity extends AppCompatActivity {
         // Setup drawer view
         setupDrawerContent(nvDrawer);
 
-        myFab = (FloatingActionButton) findViewById(R.id.fab1);
-        final Intent intent = new Intent(this, Main2Activity.class);
+        myFabResult = (FloatingActionButton) findViewById(R.id.fabResult);
+        final Intent intent = new Intent(this, Main3Activity.class);
 
-        myFab.setOnClickListener(new View.OnClickListener() {
+        myFabResult.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(intent);
+                startActivityForResult(intent, 0);
+            }
+        });
+
+        myFabPager = (FloatingActionButton) findViewById(R.id.fabPager);
+        final Intent intent2 = new Intent(this, Main2Activity.class);
+
+        myFabPager.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(intent2);
             }
         });
 
@@ -57,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             defaultFragment = (Fragment) fragment1Class.newInstance();
             // Insert the fragment by replacing any existing fragment
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.flContent, defaultFragment).commit();
+            fragmentManager.beginTransaction().replace(R.id.flContent, defaultFragment, "FRAGMENT1").commit();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -82,18 +98,23 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = null;
         Class fragmentClass;
 
+
         switch(menuItem.getItemId()) {
             case R.id.nav_first_fragment:
                 fragmentClass = Fragment1.class;
+
                 break;
             case R.id.nav_second_fragment:
                 fragmentClass = Fragment2.class;
+
                 break;
             case R.id.nav_third_fragment:
                 fragmentClass = Fragment3.class;
+
                 break;
             case R.id.nav_fourth_fragment:
                 fragmentClass = Fragment4.class;
+
                 break;
             default:
                 fragmentClass = Fragment5.class;
@@ -127,6 +148,20 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode,
+                                    int resultCode,
+                                    Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.e(TAG, "setttest3:\n");
+
+            String wow = data.getStringExtra("result");
+            //result.setText(data.getStringExtra("result"));
+            Log.e(TAG, wow);
+
+
     }
 
 

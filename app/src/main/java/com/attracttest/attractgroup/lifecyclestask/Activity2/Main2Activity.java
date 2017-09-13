@@ -79,30 +79,30 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.d(TAG, "ActivityMain: onRestart()");
+        Log.d(TAG, "ActivityMain2: onRestart()");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d(TAG, "ActivityMain: onStart()");
+        Log.d(TAG, "ActivityMain2: onStart()");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(TAG, "ActivityMain: onResume()");
+        Log.d(TAG, "ActivityMain2: onResume()");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d(TAG, "ActivityMain: onPause()");
+        Log.d(TAG, "ActivityMain2: onPause()");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d(TAG, "ActivityMain: onStop()");
+        Log.d(TAG, "ActivityMain2: onStop()");
     }
 }

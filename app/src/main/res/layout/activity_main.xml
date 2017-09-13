@@ -2,6 +2,7 @@
 <android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -33,11 +34,19 @@
                 android:layout_height="wrap_content"
                 />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_result"
+                tools:text="sdfsdfdsf"
+                android:layout_gravity="bottom"
+                />
+
 
         </LinearLayout>
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab1"
+            android:id="@+id/fabPager"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -48,14 +57,14 @@
             android:src="@drawable/ic_add_black"
             />
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab2"
+            android:id="@+id/fabResult"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scaleType="fitCenter"
             android:layout_margin="0dp"
             android:src="@android:drawable/ic_btn_speak_now"
-            android:layout_alignLeft="@+id/fab1"
-            android:layout_above="@+id/fab1"
+            android:layout_alignLeft="@+id/fabPager"
+            android:layout_above="@+id/fabPager"
             />
 
     </RelativeLayout>
