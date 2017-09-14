@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
         Fragment currFragm = fm.findFragmentByTag("FRAGMENT" + requestCode);
         TextView result = currFragm.getView().findViewById(R.id.frag);
-        result.append(" " + data.getStringExtra("result"));
+        result.append(" " + data.getStringExtra("result") + " ");
 
         //currFragm.getView().findViewById(R.id.frag1_2);
 

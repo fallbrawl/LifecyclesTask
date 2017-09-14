@@ -22,18 +22,18 @@ public class Fragment3 extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        Log.e(TAG, "Activity2/Fragment3: onAttach()");
+        Log.e(TAG, "Activity1/Fragment3: onAttach()");
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e(TAG, "Activity2/Fragment3: onCreate()");
+        Log.e(TAG, "Activity1/Fragment3: onCreate()");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.e(TAG, "Activity2/Fragment3: onCreateView()");
+        Log.e(TAG, "Activity1/Fragment3: onCreateView()");
         View view = inflater.inflate(R.layout.fragment1_3, null);
         TextView textView = view.findViewById(R.id.frag);
         textView.setText("Fragment3 Activity1");
