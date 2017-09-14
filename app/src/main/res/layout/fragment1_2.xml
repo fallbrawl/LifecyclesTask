@@ -6,7 +6,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Fragment2 Activity1"
-        android:id="@+id/frag1_2"/>
+        android:id="@+id/frag"/>
 
 </LinearLayout>

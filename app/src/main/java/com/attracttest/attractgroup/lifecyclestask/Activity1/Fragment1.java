@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 import com.attracttest.attractgroup.lifecyclestask.R;
@@ -34,7 +35,11 @@ public class Fragment1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.e(TAG, "Activity1/Fragment1: onCreateView()");
-        return inflater.inflate(R.layout.fragment1_1, null);
+        View view = inflater.inflate(R.layout.fragment1_1, null);
+        TextView textView = view.findViewById(R.id.frag);
+        textView.setText("Fragment1 Activity1");
+
+        return view;
     }
 
     @Override

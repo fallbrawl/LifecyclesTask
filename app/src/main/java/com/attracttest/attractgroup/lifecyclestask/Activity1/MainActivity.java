@@ -31,12 +31,13 @@ public class MainActivity extends AppCompatActivity {
 
     private Fragment defaultFragment;
 
-    private TextView result;
+    int currentFragmentId = 1;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "ActivityMain: onCreate()");
+
         // Set a Toolbar to replace the ActionBar.
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Find our drawer view
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
+
         // Setup drawer view
         setupDrawerContent(nvDrawer);
 
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         myFabResult.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivityForResult(intent, 0);
+                startActivityForResult(intent, currentFragmentId);
             }
         });
 
@@ -67,18 +69,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        //Setting the first frag
         Class fragment1Class = Fragment1.class;
 
         try {
             defaultFragment = (Fragment) fragment1Class.newInstance();
-            // Insert the fragment by replacing any existing fragment
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.flContent, defaultFragment, "FRAGMENT1").commit();
+            fragmentManager.beginTransaction().replace(R.id.flContent, defaultFragment, "FRAGMENT" + currentFragmentId).commit();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+
+        //Initial fragment id
+        //currentFragmentId = findViewById(R.id.frag1_1).getId();
 
     }
 
@@ -102,22 +108,32 @@ public class MainActivity extends AppCompatActivity {
         switch(menuItem.getItemId()) {
             case R.id.nav_first_fragment:
                 fragmentClass = Fragment1.class;
-
+                //currentFragmentId = findViewById(R.id.frag1_1).getId();
+                currentFragmentId = 1;
                 break;
+
             case R.id.nav_second_fragment:
                 fragmentClass = Fragment2.class;
-
+                //currentFragmentId = findViewById(R.id.frag1_2).getId();
+                currentFragmentId = 2;
                 break;
+
             case R.id.nav_third_fragment:
                 fragmentClass = Fragment3.class;
-
+                //currentFragmentId = findViewById(R.id.frag1_3).getId();
+                currentFragmentId = 3;
                 break;
+
             case R.id.nav_fourth_fragment:
                 fragmentClass = Fragment4.class;
-
+                //currentFragmentId = findViewById(R.id.frag1_4).getId();
+                currentFragmentId = 4;
                 break;
+
             default:
                 fragmentClass = Fragment5.class;
+                //currentFragmentId = findViewById(R.id.frag1_5).getId();
+                currentFragmentId = 5;
         }
 
         try {
@@ -128,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.flContent, fragment, "FRAGMENT" + currentFragmentId).commit();
 
         // Highlight the selected item has been done by NavigationView
         menuItem.setChecked(true);
@@ -155,16 +171,18 @@ public class MainActivity extends AppCompatActivity {
                                     int resultCode,
                                     Intent data){
         super.onActivityResult(requestCode, resultCode, data);
-        Log.e(TAG, "setttest3:\n");
 
-            String wow = data.getStringExtra("result");
+        String wow = data.getStringExtra("result");
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment currFragm = fm.findFragmentByTag("FRAGMENT" + requestCode);
+        TextView result = currFragm.getView().findViewById(R.id.frag);
+        result.append(" " + data.getStringExtra("result"));
+
+        //currFragm.getView().findViewById(R.id.frag1_2);
+
             //result.setText(data.getStringExtra("result"));
             Log.e(TAG, wow);
-
-
     }
-
-
 
     @Override
     protected void onRestart() {
